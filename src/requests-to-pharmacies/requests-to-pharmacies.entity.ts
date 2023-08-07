@@ -6,6 +6,11 @@ export enum Status {
 
 export class RequestsToPharmacies {
   petition: string;
-  client: string;
+  clientId: string;
   status: Status;
+}
+
+export class PostRequest {
+  petition: string;
+  clientId: string;
 }

@@ -25,8 +25,8 @@ export class Supabase {
     this.logger.log('initialising new supabase client for new Scope.REQUEST');
 
     this.clientInstance = createClient(
-      this.configService.get('SUPABASE_URL'),
-      this.configService.get('SUPABASE_KEY'),
+      this.configService.get('SUPABASE_API_URL'),
+      this.configService.get('SUPABASE_API_KEY'),
     );
 
     this.logger.log('auth has been set!');
