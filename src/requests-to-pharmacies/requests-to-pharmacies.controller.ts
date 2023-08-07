@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { RequestsToPharmaciesService } from './requests-to-pharmacies.service';
-import { RequestsToPharmacies } from './requests-to-pharmacies.entity';
+import { PostRequest } from './requests-to-pharmacies.entity';
 
 @Controller('requests-to-pharmacies')
 export class RequestsToPharmaciesController {
@@ -14,8 +14,7 @@ export class RequestsToPharmaciesController {
   }
 
   @Post()
-  createRequestToPharmacy(@Body() body: RequestsToPharmacies) {
-    console.log(body);
-    return 'guardado';
+  createRequestToPharmacy(@Body() body: PostRequest) {
+    return this.requestsToPharmaciesService.postRequest(body);
   }
 }
