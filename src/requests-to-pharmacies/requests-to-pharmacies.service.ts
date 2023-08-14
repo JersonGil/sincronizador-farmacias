@@ -1,7 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Supabase } from '../common/supabase';
 import { PostRequest } from './requests-to-pharmacies.entity';
-
 @Injectable()
 export class RequestsToPharmaciesService {
   constructor(private readonly supabase: Supabase) {}
