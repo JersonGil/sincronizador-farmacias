@@ -4,7 +4,6 @@ import { AuthModule } from './auth/auth.module';
 import { ClientsModule } from './clients/clients.module';
 import { SupabaseModule } from './common/supabase.module';
 import { ConfigModule } from '@nestjs/config';
-import { DatabaseModule } from './database/database.module';
 import { InventoryModule } from './inventory/inventory.module';
 
 @Module({
@@ -14,7 +13,6 @@ import { InventoryModule } from './inventory/inventory.module';
     AuthModule,
     ClientsModule,
     SupabaseModule,
-    DatabaseModule,
     InventoryModule,
   ],
   controllers: [],

@@ -1,13 +1,25 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { QueryRunner } from 'typeorm';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { InventoryBodyDto } from './dto/inventory.dto';
+import { Supabase } from '../common/supabase';
 
 @Injectable()
 export class InventoryService {
-  constructor(
-    @Inject('INVENTORY_REPOSITORY') private readonly connection: QueryRunner,
-  ) {}
+  constructor(private readonly supabase: Supabase) {}
 
-  async doSomeQuery() {
-    return this.connection.query('SELECT * FROM INVENTARIO;');
+  async saveInventory(body: InventoryBodyDto): Promise<string> {
+    const { data, error } = await this.supabase
+      .getClient()
+      .from('petitions_log')
+      .update({
+        petition_file: body.petition_file,
+        status: 1,
+      })
+      .eq('client_id_to', body.client_id_to)
+      .select();
+    if (!data || error) {
+      throw new InternalServerErrorException(error.message);
+    }
+
+    return 'Petition send successfully';
   }
 }
