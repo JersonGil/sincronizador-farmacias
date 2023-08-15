@@ -10,7 +10,7 @@ export class RequestsToPharmacies {
   clientId: string;
   status: Status;
   clientIdTo: string;
-  petition_file: JSON;
+  petition_file?: JSON;
 }
 
 export class PostRequest {
