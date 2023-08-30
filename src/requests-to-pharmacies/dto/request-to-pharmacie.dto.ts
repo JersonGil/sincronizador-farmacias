@@ -9,3 +9,17 @@ export class RequestDto {
   @IsString()
   status: string;
 }
+
+export class PostDto {
+  @IsString()
+  @IsNotEmpty()
+  clientIdTo: string;
+
+  @IsString()
+  @IsNotEmpty()
+  clientId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  request: string;
+}

@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { RequestsToPharmaciesService } from './requests-to-pharmacies.service';
-import { PostRequest } from './requests-to-pharmacies.entity';
-import { RequestDto } from './dto/request-to-pharmacie.dto';
+import { RequestDto, PostDto } from './dto/request-to-pharmacie.dto';
 
 @Controller('requests-to-pharmacies')
 export class RequestsToPharmaciesController {
@@ -10,7 +9,7 @@ export class RequestsToPharmaciesController {
   ) {}
 
   @Post()
-  createRequestToPharmacy(@Body() body: PostRequest) {
+  createRequestToPharmacy(@Body() body: PostDto) {
     return this.requestsToPharmaciesService.postRequest(body);
   }
 

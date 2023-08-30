@@ -1,7 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Supabase } from '../common/supabase';
-import { PostRequest } from './requests-to-pharmacies.entity';
-import { RequestDto } from './dto/request-to-pharmacie.dto';
+import { RequestDto, PostDto } from './dto/request-to-pharmacie.dto';
 @Injectable()
 export class RequestsToPharmaciesService {
   constructor(private readonly supabase: Supabase) {}
@@ -29,7 +28,16 @@ export class RequestsToPharmaciesService {
     return data;
   }
 
-  async postRequest(body: PostRequest): Promise<string> {
+  async postRequest(body: PostDto): Promise<string> {
+    const resp = await this.getRequest({
+      client_id_to: body.clientIdTo,
+      status: '2',
+    });
+
+    if (resp.length > 0) {
+      return 'Petition already send';
+    }
+
     const { data, error } = await this.supabase
       .getClient()
       .from('petitions_log')
