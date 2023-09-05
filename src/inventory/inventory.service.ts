@@ -15,6 +15,7 @@ export class InventoryService {
         status: 1,
       })
       .eq('client_id_to', body.client_id_to)
+      .eq('status', 2)
       .select();
     if (!data || error) {
       throw new InternalServerErrorException(error.message);
