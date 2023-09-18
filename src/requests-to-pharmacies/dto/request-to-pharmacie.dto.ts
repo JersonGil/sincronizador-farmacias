@@ -23,3 +23,9 @@ export class PostDto {
   @IsNotEmpty()
   request: string;
 }
+
+export class updateDto {
+  @IsString()
+  @IsNotEmpty()
+  status: string;
+}

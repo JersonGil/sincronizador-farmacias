@@ -55,4 +55,18 @@ export class RequestsToPharmaciesService {
 
     return 'Petition send successfully';
   }
+
+  async updateRequest(body, client_id: string): Promise<string> {
+    const { data, error } = await this.supabase
+      .getClient()
+      .from('petitions_log')
+      .update({ ...body })
+      .eq('client_id', client_id)
+      .select();
+
+    if (!data || error) {
+      throw new InternalServerErrorException(error.message);
+    }
+    return 'Petition update successfully';
+  }
 }

@@ -1,7 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { HttpExceptionFilter } from './http-exception.filter';
+import {
+  HttpExceptionFilter,
+  validationExceptionFactory,
+} from './http-exception.filter';
 import { urlencoded, json } from 'express';
 
 async function bootstrap() {
@@ -10,6 +13,7 @@ async function bootstrap() {
     new ValidationPipe({
       disableErrorMessages: false,
       enableDebugMessages: true,
+      exceptionFactory: validationExceptionFactory,
     }),
   );
   app.use(json({ limit: '50mb' }));

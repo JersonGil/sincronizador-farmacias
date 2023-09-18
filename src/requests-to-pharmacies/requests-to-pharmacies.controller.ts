@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Put, Param } from '@nestjs/common';
 import { RequestsToPharmaciesService } from './requests-to-pharmacies.service';
-import { RequestDto, PostDto } from './dto/request-to-pharmacie.dto';
+import { RequestDto, PostDto, updateDto } from './dto/request-to-pharmacie.dto';
 
 @Controller('requests-to-pharmacies')
 export class RequestsToPharmaciesController {
@@ -16,5 +16,13 @@ export class RequestsToPharmaciesController {
   @Get()
   getRequest(@Query() params: RequestDto) {
     return this.requestsToPharmaciesService.getRequest(params);
+  }
+
+  @Put(':client_id')
+  updateRequest(
+    @Param('client_id') client_id: string,
+    @Body() body: updateDto,
+  ) {
+    return this.requestsToPharmaciesService.updateRequest(body, client_id);
   }
 }
