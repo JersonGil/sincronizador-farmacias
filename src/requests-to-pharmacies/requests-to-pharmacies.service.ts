@@ -34,9 +34,7 @@ export class RequestsToPharmaciesService {
       status: '2',
     });
 
-    console.log('peticiones', resp);
-
-    if (resp !== 'No hay peticiones' || resp.length > 0) {
+    if (resp !== 'No hay peticiones') {
       return 'Petition already send';
     }
 
