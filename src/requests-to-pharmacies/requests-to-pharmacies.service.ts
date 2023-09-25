@@ -1,12 +1,35 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Supabase } from '../common/supabase';
-import { RequestDto, PostDto } from './dto/request-to-pharmacie.dto';
+import {
+  RequestDto,
+  PostDto,
+  MyRequestDto,
+} from './dto/request-to-pharmacie.dto';
 @Injectable()
 export class RequestsToPharmaciesService {
   constructor(private readonly supabase: Supabase) {}
 
   getHello(): string {
     return 'Hello World!';
+  }
+
+  async getMyRequests(params: MyRequestDto): Promise<any> {
+    const { data, error } = await this.supabase
+      .getClient()
+      .from('petitions_log')
+      .select('*')
+      .eq('client_id', params.client_id)
+      .eq('status', params.status);
+
+    if (!data || error) {
+      throw new InternalServerErrorException(error.message);
+    }
+
+    if (data.length === 0) {
+      return 'No hay peticiones';
+    }
+
+    return data;
   }
 
   async getRequest(params: RequestDto): Promise<any> {

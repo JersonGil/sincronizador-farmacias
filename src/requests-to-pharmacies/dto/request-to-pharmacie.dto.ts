@@ -1,5 +1,14 @@
 import { IsString, IsNotEmpty } from 'class-validator';
 
+export class MyRequestDto {
+  @IsString()
+  @IsNotEmpty()
+  client_id: string;
+
+  @IsNotEmpty()
+  @IsString()
+  status: string;
+}
 export class RequestDto {
   @IsString()
   @IsNotEmpty()
