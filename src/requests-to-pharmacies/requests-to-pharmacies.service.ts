@@ -31,7 +31,7 @@ export class RequestsToPharmaciesService {
   async postRequest(body: PostDto): Promise<string> {
     const resp = await this.getRequest({
       client_id_to: body.clientIdTo,
-      status: 2,
+      status: '2',
     });
 
     if (resp !== 'No hay peticiones') {
