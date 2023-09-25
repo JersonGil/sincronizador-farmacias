@@ -18,7 +18,7 @@ export class RequestsToPharmaciesController {
     return this.requestsToPharmaciesService.postRequest(body);
   }
 
-  @Get()
+  @Get('/myRequest')
   getRequest(@Query() params: RequestDto) {
     return this.requestsToPharmaciesService.getRequest(params);
   }
