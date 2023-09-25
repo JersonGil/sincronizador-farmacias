@@ -18,12 +18,12 @@ export class RequestsToPharmaciesController {
     return this.requestsToPharmaciesService.postRequest(body);
   }
 
-  @Get('/myRequest')
+  @Get()
   getRequest(@Query() params: RequestDto) {
     return this.requestsToPharmaciesService.getRequest(params);
   }
 
-  @Get()
+  @Get('/myRequest')
   getMyRequests(@Query() params: MyRequestDto) {
     return this.requestsToPharmaciesService.getMyRequests(params);
   }
