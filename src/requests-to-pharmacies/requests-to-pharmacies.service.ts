@@ -34,7 +34,12 @@ export class RequestsToPharmaciesService {
       status: '2',
     });
 
-    if (resp !== 'No hay peticiones') {
+    const resp2 = await this.getRequest({
+      client_id_to: body.clientIdTo,
+      status: '1',
+    });
+
+    if (resp !== 'No hay peticiones' || resp2 !== 'No hay peticiones') {
       return 'Petition already send';
     }
 
