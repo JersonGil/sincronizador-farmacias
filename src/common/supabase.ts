@@ -27,6 +27,9 @@ export class Supabase {
     this.clientInstance = createClient(
       this.configService.get('SUPABASE_API_URL'),
       this.configService.get('SUPABASE_API_KEY'),
+      {
+        auth: { persistSession: true, autoRefreshToken: true },
+      },
     );
 
     this.logger.log('auth has been set!');

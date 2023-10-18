@@ -10,13 +10,15 @@ export class InventoryService {
     const { data, error } = await this.supabase
       .getClient()
       .from('petitions_log')
-      .update({
+      .insert({
         petition_file: body.petition_file,
+        request: body.request,
+        client_id: body.clientId,
+        client_id_to: body.clientIdTo,
         status: 1,
       })
-      .eq('client_id_to', body.client_id_to)
-      .eq('status', 2)
       .select();
+
     if (!data || error) {
       throw new InternalServerErrorException(error.message);
     }

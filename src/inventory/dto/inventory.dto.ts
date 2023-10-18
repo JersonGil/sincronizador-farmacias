@@ -6,5 +6,13 @@ export class InventoryBodyDto {
 
   @IsString()
   @IsNotEmpty()
-  client_id_to: string;
+  clientIdTo: string;
+
+  @IsString()
+  @IsNotEmpty()
+  clientId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  request: string;
 }

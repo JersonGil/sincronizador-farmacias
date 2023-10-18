@@ -18,7 +18,7 @@ export class RequestsToPharmaciesService {
       .getClient()
       .from('petitions_log')
       .select('*')
-      .eq('client_id', params.client_id)
+      .eq('client_id_to', params.client_id)
       .eq('status', params.status);
 
     if (!data || error) {
@@ -89,7 +89,7 @@ export class RequestsToPharmaciesService {
       .getClient()
       .from('petitions_log')
       .update({ ...body })
-      .eq('client_id', client_id)
+      .eq('client_id_to', client_id)
       .select();
 
     if (!data || error) {
